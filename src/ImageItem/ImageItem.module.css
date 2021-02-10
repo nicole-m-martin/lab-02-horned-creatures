@@ -1,5 +1,9 @@
-li {
-  list-style: none;
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  margin: 0 auto;
 }
 
 img {
@@ -12,4 +16,5 @@ img {
   border: solid 1px black;
   width: 200px;
   margin: 5px;
+  border-radius: 15px;
 }

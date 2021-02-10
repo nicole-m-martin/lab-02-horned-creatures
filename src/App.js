@@ -29,7 +29,8 @@ export default class App extends React.Component {
       return (
         <>  
         <Header />
-        <select value={this.state.keyword} 
+        
+        <select className='select' value={this.state.keyword} 
         onChange={this.handleKeywordChange}>
           <option value=''>Pick Your Creature</option>
           <option value='narwhal'>Narwhals</option>
@@ -43,6 +44,7 @@ export default class App extends React.Component {
           <option value='lizard'>Horned Lizards</option>
           <option value='dragon'>Dragons</option>
         </select>
+        
         
         <ImageList images={ filterCreatures } />
         </>
