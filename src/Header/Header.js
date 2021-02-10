@@ -7,7 +7,9 @@ export default class Header extends React.Component {
   render() {
     return (
       <div>
-        This will be the Header!!!
+        <h1 className={style.welcome}>
+        Welcome to the Horned Beast Store!
+        </h1> 
       </div>
     )
   }
