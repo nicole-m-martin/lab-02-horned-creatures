@@ -3,13 +3,14 @@ import './App.css';
 import Header from './Header/Header.js';
 import images from './data.js';
 import ImageList from './ImageList/ImageList.js'
+import Dropdown from './Dropdown/Dropdown.js'
 
 
 
 export default class App extends React.Component {
     state = {
-      url: '',
-      keyword: '',
+       keyword: '',
+       horns: '',
     }
     
     handleKeywordChange = (e) => {
@@ -17,38 +18,59 @@ export default class App extends React.Component {
         keyword: e.target.value
       })
     }
-    
+
+    handleHornsChange = (e) => {
+      this.setState({
+        horns: Number(e.target.value)
+      })
+    }
+
     render() {
       const filterCreatures = images.filter((image) => {
-        if(!this.state.keyword) return true;
-        if(image.keyword === this.state.keyword){
-          return true;
-        }
-      })
+        if (!this.state.keyword && !this.state.horns) return true;
+
+        if (this.state.keyword && !this.state.horns) { 
+        if (image.keyword === this.state.keyword) return true; }
+      
+        if (this.state.horns && !this.state.keyword) {
+        if (image.horns === this.state.horns) return true; }
+        
+        if (this.state.horns && this.state.keyword) {
+          if (image.horns === this.state.horns && image.keyword === this.state.keyword) return true; }
+
+        return false;
+
+      });
 
       return (
         <>  
         <Header />
         
-        <select className='select' value={this.state.keyword} 
-        onChange={this.handleKeywordChange}>
-          <option value=''>Pick Your Creature</option>
-          <option value='narwhal'>Narwhals</option>
-          <option value='rhino'>Rhinos</option>
-          <option value='unicorn'>Unicorns</option>
-          <option value='unilego'>UniLegos</option>
-          <option value='triceratops'>Triceratops</option>
-          <option value='markhor'>Markhors</option>
-          <option value='mouflon'>Mouflons</option>
-          <option value='chameleon'>Chameleons</option>
-          <option value='lizard'>Horned Lizards</option>
-          <option value='dragon'>Dragons</option>
-        </select>
+        <div className='type-box'>
+          Type
         
+        <Dropdown
+        currentValue={this.state.keyword}
+        handleChange={this.handleKeywordChange}
+        options={['', 'narwhal', 'rhino', 'unilego', 'triceratops', 'markhor', 'mouflon', 'chameleon', 'lizard', 'dragon']} />
+        </div>
+        <div className='horns-box'>
+        Horns 
+        <Dropdown
+        currentValue={this.state.horns}
+        handleChange={this.handleHornsChange}
+        options={['', 1, 2, 3, 100]} />
+        </div>
         
-        <ImageList images={ filterCreatures } />
+
+        <ImageList
+        filterCreatures={filterCreatures} />
         </>
-      )
+      );
     }
   }
+
   
+  
+   
+   
