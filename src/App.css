@@ -7,5 +7,12 @@ body {
 }
 
 select {
-  margin-left: 46%;
+  width: 100px;
+}
+
+.type-box,
+.horns-box {
+  display: grid;
+  grid-template: repeat(2, 1fr);
+  justify-content: center;
 }

@@ -8,9 +8,12 @@ export default class Dropdown extends React.Component {
        onChange={this.props.handleChange}> 
        
        {this.props.options.map(CreatureItem =>
-        <option value={CreatureItem}> {CreatureItem} </option>)
+        <option 
+        key={CreatureItem} 
+        value={CreatureItem}> 
+        {CreatureItem} </option>)
         }
-        
+
        </select>
     
     )
